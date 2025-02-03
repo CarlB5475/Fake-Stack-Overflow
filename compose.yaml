@@ -1,0 +1,51 @@
+services:
+  frontend:
+    build: ./client
+    container_name: fakeso_frontend
+    ports:
+      - '3000:3000'
+  backend:
+    build: ./server
+    container_name: fakeso_backend
+    ports:
+      - '8000:8000'
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/fake_so
+  
+  # Optionally initializes and resets the database for this project.
+  init-db:
+    build: ./server
+    container_name: fakeso_init
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/fake_so
+      - INIT_DB=${INIT_DB:-false}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-password}
+    entrypoint: ["node", "init.js"]
+    restart: "no"
+
+  # The database of choice to run to demo the Fake Stack Overflow project.
+  mongodb:
+    image: mongo:latest
+    container_name: fakeso_mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - fakeso_data:/data/db
+  
+  # A web service hosted on localhost:8081 to show data in the fakeso database.
+  mongo-express:
+    image: mongo-express:latest
+    container_name: fakeso_mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017/fake_so
+      - ME_CONFIG_BASICAUTH=false
+
+volumes:
+  fakeso_data:
