@@ -52,6 +52,10 @@ If you want to run the application without initialization, then run the followin
 $ docker compose up -d
 ```
 
+To access the webite, go to http://localhost:3000.
+
+To access the database, go to http://localhost:8081.
+
 To stop running the application, run the following command.
 ```
 $ docker compose down
