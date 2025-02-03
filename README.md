@@ -42,7 +42,26 @@ Navigate to the project directory, and to initialize and run the application for
 $ INIT_DB=true ADMIN_USERNAME=<username> ADMIN_PASSWORD=<password> docker-compose up --build -d
 ```
 
-This will run the `init.js` script to reset the database and populate it with sample data before running the application. Here's the sample user accounts you can use:
+**Note:** If you use CMD or Powershell on Windows, use the following commands respectively instead.
+
+CMD:
+```
+$ set INIT_DB=true
+$ set ADMIN_USERNAME=<username>
+$ set ADMIN_PASSWORD=<password>
+docker compose up --build -d
+```
+
+Powershell:
+```
+$ $env:INIT_DB="true"
+$ $env:ADMIN_USERNAME="<username>"
+$ $env:ADMIN_PASSWORD="<password>"
+$ docker compose up --build -d
+```
+You will have to set `INIT_DB=false` for the CMD and Powershell methods afterwards again if you don't wait to reset the database again. You'll also need to modify the `ADMIN_USERNAME` and `ADMIN_PASSWORD` environment variables if you want to have a different admin username and password for initialization.
+
+This command will run the `init.js` script to reset the database and populate it with sample data before running the application. Here's the sample user accounts you can use:
 - Admin: `username: admin (default) | password: password (default) | email: yomama@gmail.com`
 - Regular user: `username: joeshmo | password: supersecret | email: mybrainhurts@gmail.com`
 - Regular user: `username: john doe | password: supersecret2 | email: johndoe@gmail.com`
