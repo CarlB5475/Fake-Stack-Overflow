@@ -1,15 +1,63 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/9NDadFFr)
-Add design docs in *images/*
+# Fake Stack Overflow
+James Carl Nanas
 
-## Instructions to setup and run project
-- To populate data, make sure mongodb server is running on              mongodb://127.0.0.1:27017/fake_so
-- To run init, insert into the console, where < username> and < password> is up to you: nodemon server/init.js < username> < password>
-- Make sure to use npm install in both the client and server directories to get the appropriate npm packages.
-- Note: In the initialized database, there's 2 other users (excluding the admin) with the following emails and passwords:
-    - mybrainhurts@gmail.com, supersecret
-    - johndoe@gmail.com, supersecret2
-- Here's the admin email as well: yomama@gmail.com
+CSE316 - Software Development - Fall 2023
 
+Contributors:
+- James Carl Nanas
+- Saatvik Sandal
+
+## Summary
+A Stack Overflow clone web project for my Software Development class that helped me learn the tech stack for web development. I collaborated with a fellow classmate on this project.
+
+## What I Learned
+- Frontend development tech stack:
+    - HTML
+    - CSS
+    - JavaScript
+    - React
+- Backend development tech stack:
+    - Node.js
+    - Express
+    - MongoDB
+
+- Use the axios library to make HTTP requests from the client to server to fetch and perform CRUD operations on the following data:
+    - User accounts
+    - Tags
+    - Question posts
+    - Answers
+    - Comments
+- Use bcrypt to encrypt passwords into the MongoDB database for security.
+- Use express-session to handle user accounts logging in to the website.
+
+### Modifications
+I have now utilized Docker to containerize this project's frontend, backend, and database. They can all run and communicate with each other seamlessly independent of the user's dev environment for ease of use running it. This experience has taught me how to use Docker in my software development.
+
+# Instructions to setup and run project
+## Prerequisites
+The only thing you need to have installed is [Docker](https://www.docker.com) in order to run this application locally. You don't need to install packages for the client or server, and don't need to run a MongoDB database locally.
+## Setup
+Navigate to the project directory, and to initialize and run the application for the first time, run the following command.
+```
+$ INIT_DB=true ADMIN_USERNAME=<username> ADMIN_PASSWORD=<password> docker-compose up --build -d
+```
+
+This will run the `init.js` script to reset the database and populate it with sample data before running the application. Here's the sample user accounts you can use:
+- Admin: `username: admin (default) | password: password (default) | email: yomama@gmail.com`
+- Regular user: `username: joeshmo | password: supersecret | email: mybrainhurts@gmail.com`
+- Regular user: `username: john doe | password: supersecret2 | email: johndoe@gmail.com`
+
+If you want to run the application without initialization, then run the following command.
+```
+$ docker compose up -d
+```
+
+To stop running the application, run the following command.
+```
+$ docker compose down
+```
+
+# Project Contributions
 ## Team Member 1 Contribution
 James Nanas
 - In charge of planning the front-end design of the Fake Stack Overflow website.
@@ -49,6 +97,7 @@ Saatvik Sandal
 - Added voting and reputation functionality entirely
 - Separated functionalities for guest and logged-in users across all options
 
+# Old Notes
 ## To-do List
 ### James Nanas
 - Create the following pages:
