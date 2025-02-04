@@ -49,7 +49,7 @@ CMD:
 $ set INIT_DB=true
 $ set ADMIN_USERNAME=<username>
 $ set ADMIN_PASSWORD=<password>
-docker compose up --build -d
+$ docker compose up --build -d
 ```
 
 Powershell:
